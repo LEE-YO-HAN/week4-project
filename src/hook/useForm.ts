@@ -20,7 +20,7 @@ export const useForm = () => {
     setActivePage(0);
     setTimeout(() => {
       setActivePage(1);
-    }, 50);
+    }, 100);
   };
 
   const [formData, setFormData] = useState<FormData>({
@@ -51,6 +51,7 @@ export const useForm = () => {
     e.preventDefault();
     if (isEdit) {
       dispatch(updateComments({ ...formData, id: editId }));
+      setIsEdit(false);
     } else {
       dispatch(addComments(formData));
       forcePageChange();
