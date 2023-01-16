@@ -1,24 +1,32 @@
-export type dataValue = string;
+// event type
+export type FormEvent = React.FormEvent<HTMLFormElement>;
 
-//Redux type
+export type InputEvent =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
 
+// state type
 export type InitState = {
   comments: UpdateData[];
   isLoading: boolean;
   error: any;
 };
 
+export type getCommentData = UpdateData[];
+
+export type FormData = AddData | UpdateData;
+
 export type AddData = {
-  imageUrl: string;
-  name: string;
+  profile_url: string;
+  author: string;
   content: string;
-  createAt: string;
+  createdAt: string;
 };
 
 export type UpdateData = {
   id: number;
-  imageUrl: string;
-  name: string;
+  profile_url: string;
+  author: string;
   content: string;
-  createAt: string;
+  createdAt: string;
 };

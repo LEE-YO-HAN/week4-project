@@ -153,6 +153,20 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
+    },
+    {
+      "profile_url": "",
+      "author": "ㅎㅇ",
+      "content": "ㅎㅇㅎㅇ",
+      "createdAt": "2023-1-16",
+      "id": 23
+    },
+    {
+      "profile_url": "",
+      "author": "ㅎㅇ",
+      "content": "ㅎㅇㅎㅇ",
+      "createdAt": "2023-1-16",
+      "id": 24
     }
   ]
 }

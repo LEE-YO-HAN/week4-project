@@ -3,18 +3,29 @@ import { commentsAPI } from "../api/api";
 import { InitState } from "../type";
 import { AddData } from "../type";
 import { UpdateData } from "../type";
-import axios from "axios";
-
-const BASE_URL = "http://localhost:3001";
 
 /* Thunk function */
+
+// [GET - ALL]
+export const getCommentsAll = createAsyncThunk(
+  "GET_ALL_COMMENTS",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await commentsAPI.getCommentsAll();
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 // [GET]
 export const getComments = createAsyncThunk(
-  "GET_ALL_POSTS",
+  "GET_COMMENTS",
   async (payload: number, thunkAPI) => {
     try {
       const { data } = await commentsAPI.getComments(payload);
-      return thunkAPI.fulfillWithValue([...data]);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -23,7 +34,7 @@ export const getComments = createAsyncThunk(
 
 // [POST]
 export const addComments = createAsyncThunk(
-  "POST_POSTS",
+  "POST_COMMENTS",
   async (payload: AddData, thunkAPI) => {
     try {
       const { data } = await commentsAPI.addComment(payload);
@@ -36,7 +47,7 @@ export const addComments = createAsyncThunk(
 
 // [UPDATE]
 export const updateComments = createAsyncThunk(
-  "UPDATAE_POSTS",
+  "UPDATAE_COMMENTS",
   async (payload: UpdateData, thunkAPI) => {
     try {
       console.log(payload);
@@ -51,10 +62,10 @@ export const updateComments = createAsyncThunk(
 
 // [DELETE]
 export const deleteComments = createAsyncThunk(
-  "DELETE_POSTS",
+  "DELETE_COMMENTS",
   async (payload: number, thunkAPI) => {
     try {
-      await axios.delete(`${BASE_URL}/comments/${payload}`);
+      await commentsAPI.deleteComment(payload);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -71,20 +82,22 @@ const initialState: InitState = {
 };
 
 export const commentsSlice = createSlice({
-  // 모듈 이름
   name: "comments",
-  // 초기 상태값
   initialState,
-  // reducers
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getComments.fulfilled, (state, action) => {
+    builder.addCase(getCommentsAll.fulfilled, (state, action) => {
       // Add user to the state array
+      state.comments = action.payload;
+    });
+    builder.addCase(getComments.fulfilled, (state, action) => {
+      console.log(current(state));
+      console.log(action);
       state.comments = action.payload;
     });
     builder.addCase(addComments.fulfilled, (state, action) => {
       // Add user to the state array
-      state.comments.push(action.payload);
+      state.comments.unshift(action.payload);
       return state;
     });
     builder.addCase(updateComments.fulfilled, (state, action) => {
