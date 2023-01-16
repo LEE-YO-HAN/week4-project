@@ -1,11 +1,8 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { commentsAPI } from "../api/api";
-import { InitState } from "../type";
-import { AddData } from "../type";
-import { UpdateData } from "../type";
+import { InitState, AddData, UpdateData } from "../type";
 
 /* Thunk function */
-
 // [GET - ALL]
 export const getCommentsAll = createAsyncThunk(
   "GET_ALL_COMMENTS",
@@ -74,7 +71,6 @@ export const deleteComments = createAsyncThunk(
 );
 
 /* InitialState */
-
 const initialState: InitState = {
   comments: [],
   isLoading: false,
@@ -88,25 +84,16 @@ export const commentsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCommentsAll.fulfilled, (state, action) => {
-      // Add user to the state array
       state.maxDataLength = action.payload.length;
       state.comments = action.payload;
     });
     builder.addCase(getComments.fulfilled, (state, action) => {
-      console.log(current(state));
-      console.log(action);
       state.comments = action.payload;
     });
     builder.addCase(addComments.fulfilled, (state, action) => {
-      // Add user to the state array
-      //   state.maxDataLength = state.maxDataLength + 1;
       state.comments.unshift(action.payload);
-      return state;
     });
     builder.addCase(updateComments.fulfilled, (state, action) => {
-      // Add user to the state array
-      console.log(current(state));
-      console.log(action);
       const newState = state.comments.map((item) =>
         action.meta.arg.id === item.id
           ? {
@@ -121,8 +108,6 @@ export const commentsSlice = createSlice({
       state.comments = newState;
     });
     builder.addCase(deleteComments.fulfilled, (state, action) => {
-      // Add user to the state array
-      //   state.maxDataLength = state.maxDataLength - 1;
       const newState = state.comments.filter(
         (item) => item.id !== action.payload
       );

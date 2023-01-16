@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getComments, getCommentsAll } from "../redux/commentSlice";
 import { UpdateData } from "../type";
 import { baseImage } from "../util/baseImage";
@@ -28,8 +28,6 @@ export const CommentList = ({
     (state) => state.commentSlice
   );
 
-  console.log(maxDataLength);
-
   useEffect(() => {
     dispatch(getCommentsAll());
   }, [dispatch]);
@@ -39,28 +37,37 @@ export const CommentList = ({
 
   return (
     <>
-      {comments?.map((item: UpdateData, index: number) => {
-        return (
-          <Comment key={index}>
-            <img
-              src={!item.profile_url ? baseImage(item.id) : item.profile_url}
-              alt="프로필 사진"
-            />
-            {item.author}
-            <CreatedAt>{item.createdAt}</CreatedAt>
-            <Content>{item.content}</Content>
-            <Button>
-              {isEdit && editId === item.id ? (
-                <span onClick={() => editHandler(false, item.id)}>취소</span>
-              ) : (
-                <span onClick={() => editHandler(true, item.id)}>수정</span>
-              )}
-              <span onClick={() => deleteHandler(dispatch, item.id)}>삭제</span>
-            </Button>
-            <hr />
-          </Comment>
-        );
-      })}
+      <Container>
+        {comments?.map((item: UpdateData, index: number) => {
+          return (
+            <Comment key={index}>
+              <img
+                src={!item.profile_url ? baseImage(item.id) : item.profile_url}
+                alt="프로필 사진"
+              />
+              {item.author}
+              <CreatedAt>{item.createdAt}</CreatedAt>
+              <Content>{item.content}</Content>
+              <Button>
+                {isEdit && editId === item.id ? (
+                  <span
+                    id="ActiveEdit"
+                    onClick={() => editHandler(false, item.id)}
+                  >
+                    취소
+                  </span>
+                ) : (
+                  <span onClick={() => editHandler(true, item.id)}>수정</span>
+                )}
+                <span onClick={() => deleteHandler(dispatch, item.id)}>
+                  삭제
+                </span>
+              </Button>
+              <hr />
+            </Comment>
+          );
+        })}
+      </Container>
       <Pagenation
         activePage={activePage}
         itemsCountPerPage={4}
@@ -73,6 +80,10 @@ export const CommentList = ({
     </>
   );
 };
+
+const Container = styled.div`
+  min-height: 600px;
+`;
 
 const Comment = styled.div`
   padding: 7px 10px;
@@ -98,11 +109,20 @@ const Content = styled.div`
 const Button = styled.div`
   text-align: right;
   margin: 10px 0;
+
   & span {
     margin-right: 10px;
     padding: 0.375rem 0.75rem;
     border-radius: 0.25rem;
     border: 1px solid lightgray;
+    background-color: white;
     cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+  & #ActiveEdit {
+    background-color: lightgray;
   }
 `;

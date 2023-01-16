@@ -70,7 +70,7 @@ export const Form = ({
         required
       />
       <br />
-      <button type="submit">등록</button>
+      <button type="submit">{isEdit ? "수정하기" : "등록"}</button>
     </Container>
   );
 };
@@ -93,5 +93,9 @@ const Container = styled.form`
     border-radius: 0.25rem;
     border: 1px solid lightgray;
     cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      background-color: lightgray;
+    }
   }
 `;

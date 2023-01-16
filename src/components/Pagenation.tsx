@@ -148,7 +148,7 @@ const PagingUl = styled.ul`
     font-size: 25px;
     border-radius: 5px;
     background-color: #e6e6e6;
-    transition: 0.6s;
+    transition: 0.2s;
     cursor: pointer;
     &:hover {
       color: white;
@@ -164,6 +164,7 @@ const PagingUl = styled.ul`
   li:last-child {
     background-color: #e6e6e6;
     &:hover {
+      color: #838383;
       background-color: gray;
     }
   }
