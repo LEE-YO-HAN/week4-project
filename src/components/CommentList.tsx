@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { getComments } from "../redux/commentSlice";
+import { getComments, getCommentsAll } from "../redux/commentSlice";
 import { UpdateData } from "../type";
 import { baseImage } from "../util/baseImage";
 import { useAppDispatch, useAppSelector } from "../hook/useRedux";
 import { Pagenation } from "./Pagenation";
+import { FormData } from "../type";
 
 interface childProps {
   isEdit: boolean;
@@ -24,12 +25,51 @@ export const CommentList = ({
     (state) => state.commentSlice.comments
   );
 
+  // 현재 페이지 데이터
+  const [pagingDataSet, setPagingDataSet] = useState<FormData[]>([]);
+
+  // 현재 페이지 설정
   const [activePage, setActivePage] = useState<number>(1);
+  const handlePageChange = (page: number) => {
+    setActivePage(page);
+  };
+
   useEffect(() => {
-    dispatch(getComments(activePage));
+    dispatch(getCommentsAll());
+    // dispatch(getComments(activePage));
   }, [activePage, dispatch]);
 
   console.log(commentListData);
+
+  // 인덱스 배열을 만들어 페이지별 순서 생성(숫자12는 page per items)
+  let pagePerItems = 4;
+  let indexArray = Array.from({ length: pagePerItems }, (item, index) => {
+    return index;
+  });
+  let pageIndex: number[] = [];
+  pageIndex =
+    activePage === 1
+      ? indexArray
+      : indexArray.map((item) => item + (activePage - 1) * pagePerItems);
+
+  // 현재 페이지 데이터
+  const pagingData: FormData[] = [];
+  const dataFetching = () => {
+    for (let i = 0; i < indexArray.length; i++) {
+      if (commentListData && commentListData[pageIndex[i]] === undefined) {
+        break;
+      } else {
+        pagingData.push(commentListData[pageIndex[i]]);
+      }
+    }
+    setPagingDataSet(pagingData);
+  };
+
+  useEffect(() => {
+    // if (commentListData !== []) {
+    dataFetching();
+    // }
+  }, [activePage]);
 
   return (
     <>
@@ -53,7 +93,15 @@ export const CommentList = ({
           <hr />
         </Comment>
       ))}
-      <Pagenation />
+      <Pagenation
+        activePage={activePage}
+        itemsCountPerPage={pagePerItems}
+        totalItemsCount={commentListData?.length}
+        prevPageText={"<"}
+        nextPageText={">"}
+        handlePageChange={handlePageChange}
+        maxItems={5}
+      />
     </>
   );
 };
