@@ -11,6 +11,18 @@ export const useForm = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [editId, setEditId] = useState<number>(0);
 
+  // form action && paging
+  const [activePage, setActivePage] = useState<number>(1);
+  const handlePageChange = (page: number) => {
+    setActivePage(page);
+  };
+  const forcePageChange = () => {
+    setActivePage(0);
+    setTimeout(() => {
+      setActivePage(1);
+    }, 50);
+  };
+
   const [formData, setFormData] = useState<FormData>({
     profile_url: "",
     author: "",
@@ -41,6 +53,7 @@ export const useForm = () => {
       dispatch(updateComments({ ...formData, id: editId }));
     } else {
       dispatch(addComments(formData));
+      forcePageChange();
     }
     setFormData(initFormData);
   };
@@ -53,6 +66,7 @@ export const useForm = () => {
   const deleteHandler = (dispatch: any, deleteId: number) => {
     if (window.confirm("삭제하시겠습니까?")) {
       dispatch(deleteComments(deleteId));
+      forcePageChange();
     }
   };
 
@@ -66,5 +80,8 @@ export const useForm = () => {
     editId,
     editHandler,
     deleteHandler,
+    activePage,
+    setActivePage,
+    handlePageChange,
   };
 };

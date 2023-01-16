@@ -11,6 +11,8 @@ interface childProps {
   editId: number;
   editHandler: (editStart: boolean, editId: number) => void;
   deleteHandler: (dispatch: any, deleteId: number) => void;
+  activePage: number;
+  handlePageChange: (page: number) => void;
 }
 
 export const CommentList = ({
@@ -18,16 +20,15 @@ export const CommentList = ({
   editId,
   editHandler,
   deleteHandler,
+  activePage,
+  handlePageChange,
 }: childProps) => {
   const dispatch = useAppDispatch();
   const { comments, maxDataLength } = useAppSelector(
     (state) => state.commentSlice
   );
 
-  const [activePage, setActivePage] = useState<number>(1);
-  const handlePageChange = (page: number) => {
-    setActivePage(page);
-  };
+  console.log(maxDataLength);
 
   useEffect(() => {
     dispatch(getCommentsAll());

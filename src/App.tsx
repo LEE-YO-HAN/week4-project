@@ -13,6 +13,8 @@ function App() {
     editId,
     editHandler,
     deleteHandler,
+    activePage,
+    handlePageChange,
   } = useForm();
 
   return (
@@ -22,6 +24,8 @@ function App() {
         editId={editId}
         editHandler={editHandler}
         deleteHandler={deleteHandler}
+        activePage={activePage}
+        handlePageChange={handlePageChange}
       />
       <Form
         formData={formData}

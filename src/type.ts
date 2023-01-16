@@ -5,7 +5,7 @@ export type InputEvent =
   | React.ChangeEvent<HTMLInputElement>
   | React.ChangeEvent<HTMLTextAreaElement>;
 
-// state type
+// global state type
 export type InitState = {
   comments: UpdateData[];
   isLoading: boolean;

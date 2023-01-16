@@ -85,14 +85,7 @@ const initialState: InitState = {
 export const commentsSlice = createSlice({
   name: "comments",
   initialState,
-  reducers: {
-    addDataLength: (state) => {
-      state.maxDataLength = state.maxDataLength + 1;
-    },
-    deleteDataLength: (state) => {
-      state.maxDataLength = state.maxDataLength - 1;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCommentsAll.fulfilled, (state, action) => {
       // Add user to the state array
@@ -106,6 +99,7 @@ export const commentsSlice = createSlice({
     });
     builder.addCase(addComments.fulfilled, (state, action) => {
       // Add user to the state array
+      //   state.maxDataLength = state.maxDataLength + 1;
       state.comments.unshift(action.payload);
       return state;
     });
@@ -128,6 +122,7 @@ export const commentsSlice = createSlice({
     });
     builder.addCase(deleteComments.fulfilled, (state, action) => {
       // Add user to the state array
+      //   state.maxDataLength = state.maxDataLength - 1;
       const newState = state.comments.filter(
         (item) => item.id !== action.payload
       );
@@ -136,4 +131,5 @@ export const commentsSlice = createSlice({
   },
 });
 
+export const commentsAction = commentsSlice.actions;
 export default commentsSlice.reducer;
