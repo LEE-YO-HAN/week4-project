@@ -4,21 +4,25 @@ import { getComments } from "../redux/commentSlice";
 import { UpdateData } from "../type";
 import { baseImage } from "../util/baseImage";
 import { useAppDispatch, useAppSelector } from "../hook/useRedux";
-import { useForm } from "../hook/useForm";
+import { Pagenation } from "./Pagenation";
 
 interface childProps {
   isEdit: boolean;
   editId: number;
   editHandler: (editStart: boolean, editId: number) => void;
+  deleteHandler: (dispatch: any, deleteId: number) => void;
 }
 
-export const CommentList = ({ isEdit, editId, editHandler }: childProps) => {
+export const CommentList = ({
+  isEdit,
+  editId,
+  editHandler,
+  deleteHandler,
+}: childProps) => {
   const dispatch = useAppDispatch();
   const commentListData = useAppSelector(
     (state) => state.commentSlice.comments
   );
-
-  //   const { isEdit, editId, editHandler } = useForm();
 
   const [activePage, setActivePage] = useState<number>(1);
   useEffect(() => {
@@ -44,11 +48,12 @@ export const CommentList = ({ isEdit, editId, editHandler }: childProps) => {
             ) : (
               <span onClick={() => editHandler(true, item.id)}>수정</span>
             )}
-            <span>삭제</span>
+            <span onClick={() => deleteHandler(dispatch, item.id)}>삭제</span>
           </Button>
           <hr />
         </Comment>
       ))}
+      <Pagenation />
     </>
   );
 };

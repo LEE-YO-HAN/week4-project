@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { todayDate } from "../util/todayDate";
-import { FormEvent, InputEvent, AddData, UpdateData, FormData } from "../type";
-import { addComments, updateComments } from "../redux/commentSlice";
+import { FormEvent, InputEvent, AddData, FormData } from "../type";
+import {
+  addComments,
+  updateComments,
+  deleteComments,
+} from "../redux/commentSlice";
 
 export const useForm = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -38,16 +42,18 @@ export const useForm = () => {
     } else {
       dispatch(addComments(formData));
     }
-    console.log("ㅇㄹ");
     setFormData(initFormData);
   };
-  console.log(formData);
-  console.log(editId);
-  console.log(isEdit);
 
   const editHandler = (editStart: boolean, editId: number) => {
     setIsEdit(editStart);
     setEditId(editId);
+  };
+
+  const deleteHandler = (dispatch: any, deleteId: number) => {
+    if (window.confirm("삭제하시겠습니까?")) {
+      dispatch(deleteComments(deleteId));
+    }
   };
 
   return {
@@ -57,9 +63,8 @@ export const useForm = () => {
     onSubmitHandler,
     initFormData,
     isEdit,
-
     editId,
-
     editHandler,
+    deleteHandler,
   };
 };

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { todayDate } from "../util/todayDate";
 import { useAppDispatch, useAppSelector } from "../hook/useRedux";
-import { useForm } from "../hook/useForm";
 import { FormData, FormEvent, InputEvent } from "../type";
 
 interface childProps {
@@ -26,17 +25,6 @@ export const Form = ({
 }: childProps) => {
   const dispatch = useAppDispatch();
   const { comments } = useAppSelector((state) => state.commentSlice);
-
-  //   const {
-  //     formData,
-  //     setFormData,
-  //     onChangeHandler,
-  //     onSubmitHandler,
-  //     initFormData,
-  //     isEdit,
-  //     editId,
-  //     editHandler
-  //   } = useForm();
 
   useEffect(() => {
     if (isEdit) {

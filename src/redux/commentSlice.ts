@@ -106,12 +106,16 @@ export const commentsSlice = createSlice({
       console.log(action);
       const newState = state.comments.map((item) =>
         action.meta.arg.id === item.id
-          ? { ...item, content: action.meta.arg.content }
+          ? {
+              ...item,
+              profile_url: action.payload.profile_url,
+              author: action.payload.author,
+              content: action.payload.content,
+              createdAt: action.payload.createdAt,
+            }
           : item
       );
       state.comments = newState;
-      state.comments.push(action.payload);
-      return state;
     });
     builder.addCase(deleteComments.fulfilled, (state, action) => {
       // Add user to the state array
@@ -119,8 +123,6 @@ export const commentsSlice = createSlice({
         (item) => item.id !== action.payload
       );
       state.comments = newState;
-      // state.posts.push(action.payload);
-      return state;
     });
   },
 });

@@ -1,6 +1,5 @@
 import { Form } from "./components/Form";
 import { CommentList } from "./components/CommentList";
-import { Pagenation } from "./components/Pagenation";
 import { useForm } from "./hook/useForm";
 
 function App() {
@@ -13,12 +12,17 @@ function App() {
     isEdit,
     editId,
     editHandler,
+    deleteHandler,
   } = useForm();
 
   return (
     <>
-      <CommentList isEdit={isEdit} editId={editId} editHandler={editHandler} />
-      <Pagenation />
+      <CommentList
+        isEdit={isEdit}
+        editId={editId}
+        editHandler={editHandler}
+        deleteHandler={deleteHandler}
+      />
       <Form
         formData={formData}
         setFormData={setFormData}
