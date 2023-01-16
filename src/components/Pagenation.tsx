@@ -20,12 +20,12 @@ export const Pagenation = ({
   handlePageChange,
   maxItems,
 }: childProps) => {
-  // 페이지 버튼 총 길이
+  // paging button maxLength
   const totalLength =
     Math.ceil(totalItemsCount / itemsCountPerPage) < 1
       ? 1
       : Math.ceil(totalItemsCount / itemsCountPerPage);
-  // 버튼 총 길이를 배열로 생성
+  // buttons length change to array
   const pagingArray = Array.from(
     {
       length: totalLength,
@@ -33,14 +33,14 @@ export const Pagenation = ({
     (item, index) => index
   );
 
-  // 현재 페이지가 바뀔때마다.
-  // 페이지 묶음의 몇 번째인지 설정
+  // Whenever the current page changes
+  // Set the number of pages in a group
   const [listNum, setListNum] = useState<number>(1);
   useEffect(() => {
     setListNum(Math.floor((activePage + maxItems - 1) / maxItems));
   }, [activePage]);
 
-  // 한 묶음에 보여줄 페이지 넘버
+  // page number in this group
   const listNumIndex =
     listNum === 1
       ? Array.from(
@@ -168,23 +168,3 @@ const PagingUl = styled.ul`
     }
   }
 `;
-
-// const PageListStyle = styled.div`
-//   margin-bottom: 20px;
-//   text-align: center;
-// `;
-
-// const Page = styled.button`
-//   padding: 0.375rem 0.75rem;
-//   border-radius: 0.25rem;
-//   font-size: 1rem;
-//   line-height: 1.5;
-//   border: 1px solid lightgray;
-//   ${({ active }: any) =>
-//     active &&
-//     `
-//         background: gray;
-//         color: #fff;
-//   `}
-//   margin-right: 3px;
-// `;

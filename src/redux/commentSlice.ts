@@ -79,15 +79,24 @@ const initialState: InitState = {
   comments: [],
   isLoading: false,
   error: null,
+  maxDataLength: 0,
 };
 
 export const commentsSlice = createSlice({
   name: "comments",
   initialState,
-  reducers: {},
+  reducers: {
+    addDataLength: (state) => {
+      state.maxDataLength = state.maxDataLength + 1;
+    },
+    deleteDataLength: (state) => {
+      state.maxDataLength = state.maxDataLength - 1;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCommentsAll.fulfilled, (state, action) => {
       // Add user to the state array
+      state.maxDataLength = action.payload.length;
       state.comments = action.payload;
     });
     builder.addCase(getComments.fulfilled, (state, action) => {

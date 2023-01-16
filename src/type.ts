@@ -10,6 +10,7 @@ export type InitState = {
   comments: UpdateData[];
   isLoading: boolean;
   error: any;
+  maxDataLength: number;
 };
 
 export type getCommentData = UpdateData[];
