@@ -17,7 +17,7 @@ export const useForm = () => {
     setActivePage(page);
   };
   const forcePageChange = () => {
-    setActivePage(activePage + 1);
+    setActivePage(0);
     setTimeout(() => {
       setActivePage(1);
     }, 100);
