@@ -89,6 +89,7 @@ export const commentsSlice = createSlice({
     });
     builder.addCase(addComments.fulfilled, (state, action) => {
       state.comments.unshift(action.payload);
+      state.comments.pop();
       state.maxDataLength += 1;
     });
     builder.addCase(updateComments.fulfilled, (state, action) => {

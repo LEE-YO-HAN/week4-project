@@ -17,10 +17,7 @@ export const useForm = () => {
     setActivePage(page);
   };
   const forcePageChange = () => {
-    setActivePage(0);
-    setTimeout(() => {
-      setActivePage(1);
-    }, 100);
+    setActivePage(1);
   };
 
   const [formData, setFormData] = useState<FormData>({

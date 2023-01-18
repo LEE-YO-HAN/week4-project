@@ -170,102 +170,66 @@
     },
     {
       "profile_url": "",
-      "author": "gdg",
-      "content": "gdgdg",
+      "author": "gdgd",
+      "content": "gddg",
       "createdAt": "2023-1-18",
       "id": 26
     },
     {
       "profile_url": "",
-      "author": "gdg",
-      "content": "gdgd",
+      "author": "gdgd",
+      "content": "gddg",
       "createdAt": "2023-1-18",
       "id": 27
+    },
+    {
+      "profile_url": "",
+      "author": "gdd",
+      "content": "gdd",
+      "createdAt": "2023-1-18",
+      "id": 28
+    },
+    {
+      "profile_url": "",
+      "author": "gddg",
+      "content": "gdgd",
+      "createdAt": "2023-1-18",
+      "id": 29
+    },
+    {
+      "profile_url": "",
+      "author": "gddg",
+      "content": "dggd",
+      "createdAt": "2023-1-18",
+      "id": 30
+    },
+    {
+      "profile_url": "",
+      "author": "gddg",
+      "content": "gddgd",
+      "createdAt": "2023-1-18",
+      "id": 31
     },
     {
       "profile_url": "",
       "author": "gdgd",
       "content": "gdgd",
       "createdAt": "2023-1-18",
-      "id": 28
-    },
-    {
-      "profile_url": "",
-      "author": "gd",
-      "content": "gddg",
-      "createdAt": "2023-1-18",
-      "id": 29
-    },
-    {
-      "profile_url": "",
-      "author": "ㅎㅇㅎㅇ",
-      "content": "ㅎㅇㅎㅇㅎ",
-      "createdAt": "2023-1-18",
-      "id": 30
-    },
-    {
-      "profile_url": "",
-      "author": "ㅎㅇㅇ",
-      "content": "ㅎㅇㅇ",
-      "createdAt": "2023-1-18",
-      "id": 31
-    },
-    {
-      "profile_url": "",
-      "author": "ㅎㅇㅎㅇ",
-      "content": "ㅎㅇㅎㅇ",
-      "createdAt": "2023-1-18",
       "id": 32
     },
     {
       "profile_url": "",
-      "author": "ㅎㅇㅎㅇㅎ",
-      "content": "ㅎㅇㅎㅇㅇㅎ",
+      "author": "ggdgd",
+      "content": "gdgd",
       "createdAt": "2023-1-18",
       "id": 33
     },
     {
       "profile_url": "",
-      "author": "ㅎㅇㅇㅎ",
-      "content": "ㅎㅇㅎㅇㅎ",
+      "author": "3333",
+      "content": "333",
       "createdAt": "2023-1-18",
       "id": 34
-    },
-    {
-      "profile_url": "",
-      "author": "ㅎㅇㅎㅇㅎㅇ",
-      "content": "ㅇㅎㅇㅎ",
-      "createdAt": "2023-1-18",
-      "id": 35
-    },
-    {
-      "profile_url": "",
-      "author": "ㅇㅎㅎㅇㅎ",
-      "content": "ㅎㅇㅇㅎㅎㅇ",
-      "createdAt": "2023-1-18",
-      "id": 36
-    },
-    {
-      "profile_url": "",
-      "author": "ㅇㅎㅎㅇㅎㅇ",
-      "content": "ㅇㅎ",
-      "createdAt": "2023-1-18",
-      "id": 37
-    },
-    {
-      "profile_url": "",
-      "author": "ㅎㅎㅇㅇㅎ",
-      "content": "ㅎㅇㅇ",
-      "createdAt": "2023-1-18",
-      "type": "ㅎ",
-      "id": 38
-    },
-    {
-      "profile_url": "",
-      "author": "3334444",
-      "content": "333444",
-      "createdAt": "2023-1-18",
-      "id": 39
     }
   ]
 }
