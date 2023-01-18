@@ -31,3 +31,7 @@ export type UpdateData = {
   content: string;
   createdAt: string;
 };
+
+// setState
+
+export type setFormData = React.Dispatch<React.SetStateAction<FormData>>;

@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { todayDate } from "../util/todayDate";
 import { useAppDispatch, useAppSelector } from "../hook/useRedux";
-import { FormData, FormEvent, InputEvent } from "../type";
+import { FormData, FormEvent, InputEvent, setFormData } from "../type";
 
 interface childProps {
   formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  setFormData: setFormData;
   onChangeHandler: (e: InputEvent) => void;
   onSubmitHandler: (e: FormEvent, dispatch: any) => void;
   initFormData: FormData;
