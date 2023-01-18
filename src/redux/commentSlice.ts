@@ -47,9 +47,7 @@ export const updateComments = createAsyncThunk(
   "UPDATAE_COMMENTS",
   async (payload: UpdateData, thunkAPI) => {
     try {
-      console.log(payload);
       const { data } = await commentsAPI.updateComment(payload, payload.id);
-      console.log("response", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -85,13 +83,13 @@ export const commentsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCommentsAll.fulfilled, (state, action) => {
       state.maxDataLength = action.payload.length;
-      state.comments = action.payload;
     });
     builder.addCase(getComments.fulfilled, (state, action) => {
       state.comments = action.payload;
     });
     builder.addCase(addComments.fulfilled, (state, action) => {
       state.comments.unshift(action.payload);
+      state.maxDataLength += 1;
     });
     builder.addCase(updateComments.fulfilled, (state, action) => {
       const newState = state.comments.map((item) =>
@@ -112,6 +110,7 @@ export const commentsSlice = createSlice({
         (item) => item.id !== action.payload
       );
       state.comments = newState;
+      state.maxDataLength -= 1;
     });
   },
 });

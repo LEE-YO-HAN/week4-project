@@ -40,11 +40,7 @@ export const useForm = () => {
   const onChangeHandler = (e: InputEvent) => {
     let type = e.target.name;
     let value = e.target.value;
-    if (type === "profile_url")
-      setFormData((prev) => ({ ...prev, profile_url: value }));
-    if (type === "author") setFormData((prev) => ({ ...prev, author: value }));
-    if (type === "content")
-      setFormData((prev) => ({ ...prev, content: value }));
+    setFormData((prev) => ({ ...prev, [type]: value }));
   };
 
   const onSubmitHandler = async (e: FormEvent, dispatch: any) => {
